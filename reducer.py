@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import sys
 
+sum_of_values = 0
 count = 0
 previous_key = None
 
@@ -9,12 +10,12 @@ for line in sys.stdin:
     key, value = data
 
     if previous_key != None and previous_key != key:
-        if count > 114:
-            sys.stdout.write("{0}\t{1}\n".format(previous_key, count))
+        sys.stdout.write("{0}\t{1}\n".format(previous_key, sum_of_values / count))
+        sum_of_values = 0
         count = 0
 
+    sum_of_values += float(value)
     count += 1
     previous_key = key
 
-if count > 114:
-    sys.stdout.write("{0}\t{1}\n".format(previous_key, count))
+sys.stdout.write("{0}\t{1}\n".format(previous_key, sum_of_values / count))
