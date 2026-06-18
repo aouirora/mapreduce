@@ -8,4 +8,6 @@ for line in sys.stdin:
         raise ValueError("Expected 6 fields, got {0}".format(len(data)))
 
     date, time, item, category, sales, payment = data
-    sys.stdout.write("{0}\t{1}\n".format(category, sales))
+
+    if category in ["Computers", "Cameras", "Video Games"]:
+        sys.stdout.write("{0}\t{1}\n".format(category, sales))
